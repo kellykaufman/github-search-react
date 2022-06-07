@@ -4,7 +4,9 @@ import React from "react";
 const SearchBar = () => (
   <form action="/" method="get">
     <label htmlFor="header-search">
-      <div>Github Search Feature</div>
+      <div style={{ color: "white" }}>
+        <b> Github Search Feature</b>
+      </div>
     </label>
     <input type="text" id="" placeholder="Search github" name="s" />
     <button type="submit">Search</button>
