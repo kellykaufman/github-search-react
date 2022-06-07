@@ -1,0 +1,23 @@
+The Assignment: 
+
+Create app to include a PORTION of github's search feature
+(user search)
+
+MUST INCLUDE: 
+● I can search for users and see a paginated list of results
+● I can navigate through the next and previous pages of the paginated results
+● I see the total count of search results
+● I see notable information for each search result, such as the description, star/   follower
+count, profile pictures, etc.
+● I can select a search result and be taken to the applicable page on github.com API
+
+
+Use github API 
+
+
+🌟Personal goal: add 1-2 unique features
+✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧✧
+Steps breakdown
+1. create app (npx create-react-app)
+2. npm start 
+3. state, api call, useEffect
