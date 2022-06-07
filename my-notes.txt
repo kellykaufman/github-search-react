@@ -20,4 +20,4 @@ Use github API
 Steps breakdown
 1. create app (npx create-react-app)
 2. npm start 
-3. state, api call, useEffect
+3. state, useEffect, api call, forms 
