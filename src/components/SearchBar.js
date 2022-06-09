@@ -35,7 +35,7 @@ const SearchBar = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="header-search">
           <div className="searchbar-label">
-            <b> Github Search Feature</b>
+            <b> Github Search User</b>
           </div>
         </label>
         <input
@@ -51,14 +51,16 @@ const SearchBar = () => {
 
       {items.map((item) => {
         return (
-          <>
+          <div className="user-info">
             <div style={{ color: "white" }}>{item.login}</div>
             <img
               height={30}
               style={{ borderRadius: 50 }}
               src={item.avatar_url}
             />
-          </>
+            <div>{item.bio}</div>
+            <div>{item.followers}</div>
+          </div>
         );
       })}
     </>
