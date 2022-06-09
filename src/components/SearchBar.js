@@ -26,6 +26,7 @@ const SearchBar = () => {
       })
       .then((res) => {
         setItems(res.data.items);
+        console.log(res.data.items);
       });
   };
   console.log(items);
@@ -50,16 +51,29 @@ const SearchBar = () => {
       </form>
 
       {items.map((item) => {
+        const getUserData = () => {
+          axios
+            .get(`https://api.github.com/users/${item.login}`, {
+              headers: {
+                Authorization:
+                  "Bearer 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",
+              },
+            })
+            .then((res) => {
+              console.log(res);
+            });
+        };
+        getUserData();
+
         return (
           <div className="user-info">
             <div style={{ color: "white" }}>{item.login}</div>
             <img
+              alt="user avatar"
               height={30}
               style={{ borderRadius: 50 }}
               src={item.avatar_url}
             />
-            <div>{item.bio}</div>
-            <div>{item.followers}</div>
           </div>
         );
       })}
