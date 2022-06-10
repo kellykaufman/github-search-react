@@ -2,49 +2,29 @@ import React from "react";
 import "./SearchBar.css";
 import { useState } from "react";
 import axios from "axios";
-
 /* Add everything related to searching & filtering the data*/
-
 const SearchBar = () => {
   // const [data, setData] = useState([]);
-
   const [userInput, setUserInput] = useState("");
   const [items, setItems] = useState([]);
-
   const changeValue = (value) => {
     setUserInput(value);
     // console.log(process.env.REACT_APP_API_KEY);
   };
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     console.log(userInput);
-    const getUsers = await axios
+    axios
       .get(`https://api.github.com/search/users?q=${userInput}`, {
         // I can't figure out how to pull back specific endpoints
         // auth: process.env.REACT_APP_API_KEY,
       })
-      .then((res) => res.items);
-
-    let userList = [];
-    for (let i = 0; i < getUsers.length; i++) {
-      let id = getUsers[i].id;
-      let getUserById = await axios
-        .get(`https://api.github.com/users/${item.login}`, {
-          headers: {
-            Authorization: "Bearer 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",
-          },
-        })
-        .then((res) => {
-          console.log(res);
-        });
-      userList.push(getUserById);
-    }
-    console.log(getUsers);
-    // setItems(res.data.items);
+      .then((res) => {
+        setItems(res.data.items);
+        console.log(res.data.items);
+      });
   };
   console.log(items);
-
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -64,22 +44,22 @@ const SearchBar = () => {
         <button type="submit">Search</button>
       </form>
 
-      {/* {items.map((item) => {
+      {items.map((item) => {
         const getUserData = () => {
           axios
             .get(`https://api.github.com/users/${item.login}`, {
               headers: {
                 Authorization:
-                  "Bearer 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",
+                  "Bearer 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",
               },
             })
             .then((res) => {
               console.log(res);
             });
         };
-        getUserData(); */}
+        getUserData();
 
-      {/* return (
+        return (
           <div className="user-info">
             <div style={{ color: "white" }}>{item.login}</div>
             <img
@@ -88,11 +68,12 @@ const SearchBar = () => {
               style={{ borderRadius: 50 }}
               src={item.avatar_url}
             />
+            <div>{item.bio}</div>
+            <div>{item.followers}</div>
           </div>
         );
-      })} */}
+      })}
     </>
   );
 };
-
 export default SearchBar;
