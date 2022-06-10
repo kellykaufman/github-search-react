@@ -16,18 +16,32 @@ const SearchBar = () => {
     // console.log(process.env.REACT_APP_API_KEY);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(userInput);
-    axios
+    const getUsers = await axios
       .get(`https://api.github.com/search/users?q=${userInput}`, {
         // I can't figure out how to pull back specific endpoints
         // auth: process.env.REACT_APP_API_KEY,
       })
-      .then((res) => {
-        setItems(res.data.items);
-        console.log(res.data.items);
-      });
+      .then((res) => res.items);
+
+    let userList = [];
+    for (let i = 0; i < getUsers.length; i++) {
+      let id = getUsers[i].id;
+      let getUserById = await axios
+        .get(`https://api.github.com/users/${item.login}`, {
+          headers: {
+            Authorization: "Bearer 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",
+          },
+        })
+        .then((res) => {
+          console.log(res);
+        });
+      userList.push(getUserById);
+    }
+    console.log(getUsers);
+    // setItems(res.data.items);
   };
   console.log(items);
 
@@ -50,7 +64,7 @@ const SearchBar = () => {
         <button type="submit">Search</button>
       </form>
 
-      {items.map((item) => {
+      {/* {items.map((item) => {
         const getUserData = () => {
           axios
             .get(`https://api.github.com/users/${item.login}`, {
@@ -63,9 +77,9 @@ const SearchBar = () => {
               console.log(res);
             });
         };
-        getUserData();
+        getUserData(); */}
 
-        return (
+      {/* return (
           <div className="user-info">
             <div style={{ color: "white" }}>{item.login}</div>
             <img
@@ -76,7 +90,7 @@ const SearchBar = () => {
             />
           </div>
         );
-      })}
+      })} */}
     </>
   );
 };
