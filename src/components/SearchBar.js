@@ -56,7 +56,7 @@ const SearchBar = () => {
             .get(`https://api.github.com/users/${item.login}`, {
               headers: {
                 Authorization:
-                  "Bearer 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",
+                  "Bearer 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",
               },
             })
             .then((res) => {
